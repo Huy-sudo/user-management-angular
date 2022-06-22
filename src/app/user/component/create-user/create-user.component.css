@@ -1,0 +1,152 @@
+/* * {
+    color: black
+} */
+
+::ng-deep .mat-dialog-container {
+    background: white !important;
+    color: black
+}
+
+.image {
+    width: 120px;
+    height: 100px;
+    object-fit: contain;
+    align-items: center;
+    justify-content: center;
+    background: 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.input-file {
+    display: none;
+}
+
+.mat-dialog-actions {
+    width: 100%;
+}
+
+.mat-button,
+.mat-icon-button,
+.mat-stroked-button {
+    background: none
+}
+
+::ng-deep .mat-datepicker-toggle-default-icon {
+    color: black !important
+}
+
+.title {
+    text-align: center;
+}
+
+.input-text {
+    width: 425px;
+    height: 30px;
+    background: #FFFFFF00 0% 0% no-repeat padding-box;
+    border: 1px solid #858585;
+    border-radius: 6px;
+    text-align: left;
+    font: normal normal normal 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: #858585;
+    opacity: 1;
+    padding-left: 10px;
+    margin-bottom: 10px
+}
+
+.date-input {
+    text-align: left;
+    font: normal normal normal 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: #777777;
+    opacity: 1;
+    background: #FFFFFF00 0% 0% no-repeat padding-box;
+    border: 1px solid #858585;
+    border-radius: 6px;
+    width: 220px;
+    height: 20px;
+    padding: 10px;
+    margin-bottom: 10px
+}
+
+.radio-input {
+    text-align: left;
+    font: normal normal normal 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: #858585;
+    opacity: 1;
+}
+
+.select {
+    background: #FFFFFF00 0% 0% no-repeat padding-box;
+    border: 1px solid #858585;
+    border-radius: 6px;
+    opacity: 1;
+    text-align: left;
+    font: normal normal normal 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: #858585;
+    width: 439px;
+    height: 34px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.submit-button {
+    text-align: center;
+    font: normal normal medium 14px/19px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    background: #00458F 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+}
+
+.button-7:hover,
+.button-7:focus {
+    background-color: #07c;
+}
+
+.button-7:focus {
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-7:active {
+    background-color: #0064bd;
+    box-shadow: none;
+}
+
+.discard-button {
+    text-align: center;
+    font: normal normal medium 14px/19px Roboto;
+    letter-spacing: 1.25px;
+    color: #374761;
+    opacity: 1;
+}
+
+.radio-input {
+    margin: 0;
+    margin-right: 5px;
+    margin-left: 5px;
+    text-align: left;
+    font: normal normal normal 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: #858585;
+    opacity: 1;
+}
+
+.alert {
+    text-align: left;
+    font: normal normal 300 12px/16px Roboto;
+    letter-spacing: 0px;
+    color: #E64121 !important;
+    opacity: 1;
+    margin-bottom: 10px
+}
+
+.has-error {
+    background: #FFFFFF00 0% 0% no-repeat padding-box;
+    border: 1px solid #E64121;
+    border-radius: 6px;
+    opacity: 1;
+}

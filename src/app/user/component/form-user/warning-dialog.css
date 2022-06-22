@@ -1,0 +1,45 @@
+h1 {
+    text-align: left;
+    font: normal normal normal 16px/24px Roboto;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    opacity: 1;
+}
+
+.input-text {
+    background: #FFFFFF00 0% 0% no-repeat padding-box;
+    border: 1px solid #858585;
+    border-radius: 6px;
+    opacity: 1;
+    width: 100%;
+    text-align: left;
+    font: normal normal normal 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: #858585;
+    margin-bottom: 20px;
+}
+
+.cancel-button {
+    text-align: center;
+    font: normal normal medium 14px/19px Roboto;
+    letter-spacing: 1.25px;
+    color: #32458F;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    margin-left: 180px;
+}
+
+.submit-button {
+    text-align: center;
+    font: normal normal medium 14px/19px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    background: #FB4646 0% 0% no-repeat padding-box;
+    border-radius: 1px;
+    opacity: 1;
+    margin-left: 20px
+}
+
+.submit-button:disabled {
+    opacity: 0.5;
+}

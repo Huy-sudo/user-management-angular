@@ -1,0 +1,115 @@
+<div mat-dialog class="dialog">
+  <form name="create-form" novalidate ng-submit="onSubmit()" [formGroup]="form">
+    <div mat-dialog-title class="title">
+      CREATE NEW USER
+    </div>
+    <div mat-dialog-content>
+      <div style="justify-content: center; width: 100%; display: flex; margin-bottom: 10px">
+        <label for="file">
+          <img *ngIf="!url" for="file" class="image" src="../../../../assets/baseline-local_see-24px.svg"
+            onmouseover="this.src='../../../../assets/add_img.svg';"
+            onmouseout="this.src='../../../../assets/baseline-local_see-24px.svg';">
+          <img class="image" [src]="url" *ngIf="url">
+        </label>
+        <input type="file" id="file" class="input-file" (change)="handleFileInput($event)">
+      </div>
+      <div>
+        <input 
+        [ngClass]="{'has-error': this.form.controls['firstName'].touched && this.form.controls['firstName'].hasError('required'), 'input-text': 1}"
+        type="text" id="firstName" (change)="handleOnChange($event)"
+          placeholder="First Name" formControlName="firstName" required>
+        <div *ngIf="this.form.controls['firstName'].touched && this.form.controls['firstName'].invalid"
+          class="alert">
+          <div *ngIf="this.form.controls['firstName'].errors && this.form.controls['firstName'].errors['required']">
+            Please enter user first name.
+          </div>
+          <div *ngIf="this.form.controls['firstName'].errors && this.form.controls['firstName'].errors['minlength']">
+            The input line is too short.
+          </div>
+          <div *ngIf="this.form.controls['firstName'].errors && this.form.controls['firstName'].errors['maxlength']">
+            The input line is too long.
+          </div>
+        </div>
+      </div>
+      <div>
+        <input 
+        [ngClass]="{'has-error': this.form.controls['lastName'].touched && this.form.controls['lastName'].hasError('required'), 'input-text': 1}"
+        type="text" maxLength="80" id="lastName" (change)="handleOnChange($event)"
+          placeholder="Last Name" formControlName="lastName" required>
+        <div *ngIf="this.form.controls['lastName'].touched && this.form.controls['lastName'].invalid"
+          class="alert">
+          <div *ngIf="this.form.controls['lastName'].errors && this.form.controls['lastName'].errors['required']">
+            Please enter user last name.
+          </div>
+          <div *ngIf="this.form.controls['lastName'].errors && this.form.controls['lastName'].errors['minlength']">
+            The input line is too short.
+          </div>
+          <div *ngIf="this.form.controls['lastName'].errors && this.form.controls['lastName'].errors['maxlength']">
+            The input line is too long.
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center;">
+        <input class="date-input" type="date" id="dateOfBirth" formControlName="dateOfBirth"
+          (change)="handleOnChange($event)" [max]="maxDate" [min]="minDate">
+        <input class="radio-input" type="radio" value="male" id="gender" formControlName="gender" required
+          (change)="handleOnChange($event)" class="radio-input">
+        Male
+        <input class="radio-input" type="radio" value="female" id="gender" formControlName="gender" required
+          (change)="handleOnChange($event)" class="radio-input">
+        Female
+      </div>
+      <div *ngIf="this.form.controls['dateOfBirth'].touched" class="alert">
+        <div *ngIf="dateValidator()">
+          Wrong date format
+        </div>
+      </div>
+      <div>
+        <input class="input-text" type="text" placeholder="ROSEN" disabled=true>
+      </div>
+      <div>
+        <select name="title" 
+        [ngClass]="{'has-error': this.form.controls['title'].touched && this.form.controls['title'].hasError('required'), 'select': 1}"
+        id="title" (change)="handleOnChange($event)" formControlName="title"
+          required>
+          <option value="" disabled selected>Title</option>
+          <option value="Team lead">Team lead</option>
+          <option value="Web developer">Web developer</option>
+          <option value="Tester">Tester</option>
+          <option value="UI/UX">UI/UX</option>
+          <option value="DBA">DBA</option>
+        </select>
+        <div *ngIf="this.form.controls['title'].touched && this.form.controls['title'].invalid"
+          class="alert">
+          <div *ngIf="this.form.controls['title'].errors && this.form.controls['title'].errors['required']">
+            Title is required.</div>
+        </div>
+      </div>
+      <div>
+        <input 
+        [ngClass]="{'has-error': this.form.controls['email'].touched && this.form.controls['email'].hasError('required'), 'input-text': 1}"
+        type="text" placeholder="Email" maxLength="160" id="email" formControlName="email"
+          (change)="handleOnChange($event)" required>
+        <div *ngIf="this.form.controls['email'].touched && this.form.controls['email'].invalid"
+          class="alert">
+          <div *ngIf="this.form.controls['email'].errors && this.form.controls['email'].errors['required']">
+            Please enter user email.
+          </div>
+          <div *ngIf="this.form.controls['email'].errors && this.form.controls['email'].errors['email']">
+            Wrong email format.
+          </div>
+        </div>
+        <div *ngIf="this.form.controls['email'].touched" class="alert">
+          <div *ngIf="findDuplicates(this.form.controls['email'].value)">
+            This email already exists!
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button class="discard-button" type="button" mat-button (click)="onNoClick()">DISCARD</button>
+      <button class="submit-button" mat-button type="button" [disabled]="form.invalid" (click)="onSubmit()">CREATE
+        USER</button>
+    </div>
+  </form>
+</div>

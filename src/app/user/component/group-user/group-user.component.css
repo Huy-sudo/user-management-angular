@@ -1,0 +1,21 @@
+.content-card {
+    display: flex;
+    color: black;
+}
+
+.user-card {
+    background-color: white;
+}
+
+.avatar {
+    width: 70px;
+    height: 128px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+.infoIcon {
+    position: absolute;
+    top: 0px;
+    right: 0px
+}

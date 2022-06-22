@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Are you sure you want to DELETE <b>{{data.email}}</b> ? 
+    <p>Please input the user email as confirmation.</p>
+</h1>
+<div mat-dialog-content>
+    <input class="input-text" type="text" [maxLength]="160" id="email"
+        placeholder="Email" (change)="handleInputDelete($event)">
+</div>
+<div mat-dialog-actions>
+    <button class="cancel-button" (click)="onNoClick()">Cancel</button>
+    <button class="submit-button" (click)="handleDelete()" 
+    cdkFocusInitial [disabled]="isDisable"
+    >DELETE</button>
+</div>
