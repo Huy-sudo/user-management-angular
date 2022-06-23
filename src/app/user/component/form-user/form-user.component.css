@@ -1,7 +1,3 @@
-* {
-    color: black
-}
-
 ::ng-deep .mat-dialog-container {
     background: white !important;
     color: black
