@@ -4,9 +4,6 @@ import { UsersListComponent } from './user/component/users-list/users-list.compo
 import { CreateUserComponent } from './user/component/create-user/create-user.component';
 const routes: Routes = [
   { path: "", component: UsersListComponent },
-  {
-    path: "create-user", component: CreateUserComponent
-  }
 ];
 
 @NgModule({

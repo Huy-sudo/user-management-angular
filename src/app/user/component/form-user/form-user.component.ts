@@ -8,6 +8,7 @@ import * as fromUser from "../../store/user.reducers";
 import { User } from "../../user.model";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: "app-form-user",
@@ -36,12 +37,13 @@ export class FormUser implements OnChanges, OnInit {
   userTitle: string = this.data?.title
 
   form: any = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
-    lastName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
-    title: new FormControl('', [Validators.required]),
-    dateOfBirth: new FormControl(''),
-    gender: new FormControl(''),
-    email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(160)]),
+    firstName: new FormControl({disabled: this.disable, value: this.data.firstName}, [Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
+    lastName: new FormControl({disabled: this.disable, value: this.data.lastName}, [Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
+    title: new FormControl({disabled: this.disable, value: this.data.title}, [Validators.required]),
+    dateOfBirth: new FormControl({disabled: this.disable, value: formatDate(this.data.dateOfBirth, 'mm/dd/yyyy', 'en')}),
+    gender: new FormControl({disabled: this.disable, value: this.data.gender}),
+    organization: new FormControl({disabled: true, value:this.data.organization}),
+    email: new FormControl({disabled: this.disable, value: this.data.email}, [Validators.required, Validators.email, Validators.maxLength(160)]),
   });
 
   updateUser: any = {
@@ -79,7 +81,6 @@ export class FormUser implements OnChanges, OnInit {
 
   ngOnChanges(): void {
     this.userTitle = this.data?.title
-
   }
 
   ngOnInit(): void {
@@ -92,9 +93,15 @@ export class FormUser implements OnChanges, OnInit {
 
   changeEdit() {
     if (this.disable)
-      this.disable = false;
-    // else
-    //   this.disable = false
+      this.disable = !this.disable;
+    if(this.disable == false) {
+        this.form.controls['firstName'].enable();
+        this.form.controls['lastName'].enable();
+        this.form.controls['gender'].enable();
+        this.form.controls['dateOfBirth'].enable();
+        this.form.controls['email'].enable();
+        this.form.controls['title'].enable();
+    }
   }
 
   handleOnChange(event: any) {
@@ -107,7 +114,9 @@ export class FormUser implements OnChanges, OnInit {
   }
 
   onSubmit() {
-    this.store.dispatch(new userActions.UpdateUser(this.updateUser));
+    console.log(this.updateUser);
+    
+    // this.store.dispatch(new userActions.UpdateUser(this.updateUser));
   }
 
 }

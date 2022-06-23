@@ -8,7 +8,6 @@
       </button>
     </div>
     <div mat-dialog-content>
-      <!-- <mat-form-field appearance="fill"> -->
       <div style="justify-content: center; width: 100%; display: flex; margin-bottom: 10px">
         <img class="image" src={{data.img}}>
       </div>
@@ -16,7 +15,7 @@
         <input
           [ngClass]="{'has-error': this.form.controls['firstName'].touched && this.form.controls['firstName'].hasError('required'), 'input-text': 1}"
           type="text" id="firstName" (change)="handleOnChange($event)" placeholder="First Name"
-          formControlName="firstName" required [disabled]="disable" [defaultValue]="data.firstName">
+          formControlName="firstName">
         <div *ngIf="this.form.controls['firstName'].touched && this.form.controls['firstName'].invalid" class="alert">
           <div *ngIf="this.form.controls['firstName'].errors && this.form.controls['firstName'].errors['required']">
             Please enter user first name.
@@ -32,8 +31,8 @@
       <div>
         <input
           [ngClass]="{'has-error': this.form.controls['lastName'].touched && this.form.controls['lastName'].hasError('required'), 'input-text': 1}"
-          type="text" maxLength="80" id="lastName" (change)="handleOnChange($event)" placeholder="Last Name"
-          formControlName="lastName" required [disabled]="disable" [defaultValue]="data.lastName">
+          type="text" id="lastName" (change)="handleOnChange($event)"
+          formControlName="lastName">
         <div *ngIf="this.form.controls['lastName'].touched && this.form.controls['lastName'].invalid" class="alert">
           <div *ngIf="this.form.controls['lastName'].errors && this.form.controls['lastName'].errors['required']">
             Please enter user last name.
@@ -48,27 +47,26 @@
       </div>
       <div style="display: flex; align-items: center;">
         <input class="date-input" type="date" id="dateOfBirth" formControlName="dateOfBirth"
-          (change)="handleOnChange($event)" [max]="maxDate" [min]="minDate" [disabled]="disable">
-        <input class="radio-input" type="radio" value="male" id="gender" formControlName="gender" required
-          (change)="handleOnChange($event)" class="radio-input" [disabled]="disable" [defaultChecked]="data.gender == 'male'">
+          (change)="handleOnChange($event)">
+        <input class="radio-input" type="radio" value="male" id="gender" formControlName="gender"
+          (change)="handleOnChange($event)" class="radio-input">
         Male
-        <input class="radio-input" type="radio" value="female" id="gender" formControlName="gender" required
-          (change)="handleOnChange($event)" class="radio-input" [disabled]="disable" [defaultChecked]="data.gender == 'female'">
+        <input class="radio-input" type="radio" value="female" id="gender" formControlName="gender"
+          (change)="handleOnChange($event)" class="radio-input">
         Female
       </div>
       <div *ngIf="this.form.controls['dateOfBirth'].touched" class="alert">
-        <div *ngIf="dateValidator()">
+        <div *ngIf="this.form.controls['dateOfBirth'].touched && dateValidator()">
           Wrong date format
         </div>
       </div>
       <div>
-        <input class="input-text" type="text" placeholder="ROSEN" disabled=true>
+        <input class="input-text" type="text" placeholder="ROSEN" formControlName="organization">
       </div>
       <div>
         <select name="title"
           [ngClass]="{'has-error': this.form.controls['title'].touched && this.form.controls['title'].hasError('required'), 'select': 1}"
-          id="title" (change)="handleOnChange($event)" formControlName="title" required [disabled]="disable">
-          <option value="" disabled selected [defaultSelected]="data.title">Title</option>
+          id="title" (change)="handleOnChange($event)" formControlName="title">
           <option value="Team lead">Team lead</option>
           <option value="Web developer">Web developer</option>
           <option value="Tester">Tester</option>
@@ -81,11 +79,11 @@
         </div>
       </div>
       <div>
-        <input class="input-text" type="text" [placeholder]="data.email" id="email" disabled>
+        <input class="input-text" type="text" id="email" formControlName="email" (change)="handleOnChange($event)">
       </div>
       <div mat-dialog-actions align="end">
-        <button mat-button (click)="onNoClick()">DISCARD</button>
-        <button mat-button type="submit" [disabled]="form.invalid" (click)="onSubmit()" [mat-dialog-close]="data.firstName"
+        <button class="discard-button" mat-button type="button" (click)="onNoClick()">DISCARD</button>
+        <button class="submit-button" mat-button type="button" [disabled]="form.invalid && disable" (click)="onSubmit()" [mat-dialog-close]="data.firstName"
           cdkFocusInitial>SAVE</button>
       </div>
     </div>

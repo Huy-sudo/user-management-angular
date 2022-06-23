@@ -10,6 +10,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { User } from "../../user.model";
 import { CreateUserComponent } from "../create-user/create-user.component";
 
+
 @Component({
   selector: "app-users-list",
   templateUrl: "./users-list.component.html",
@@ -110,7 +111,8 @@ export class UsersListComponent implements OnInit {
     }
   }
 
-  constructor(private store: Store<fromUser.AppState>, public dialog: MatDialog) { }
+  constructor(private store: Store<fromUser.AppState>, 
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.store.dispatch(new userActions.LoadUsers());

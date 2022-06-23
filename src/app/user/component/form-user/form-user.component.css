@@ -56,7 +56,8 @@
     letter-spacing: 0px;
     color: #858585;
     opacity: 1;
-    padding-left: 10px
+    padding-left: 10px;
+    margin-bottom: 10px
 }
 
 .date-input {
@@ -70,7 +71,8 @@
     border-radius: 6px;
     width: 220px;
     height: 20px;
-    padding: 10px
+    padding: 10px;
+    margin-bottom: 10px
 }
 
 .radio-input {
@@ -92,7 +94,51 @@
     color: #858585;
     width: 439px;
     height: 34px;
-    padding-left: 10px
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.submit-button {
+    text-align: center;
+    font: normal normal medium 14px/19px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    background: #00458F 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+}
+
+.submit-button:hover,
+.submit-button:focus {
+    background-color: #07c;
+}
+
+.submit-button:focus {
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.submit-button:active {
+    background-color: #0064bd;
+    box-shadow: none;
+}
+
+.discard-button {
+    text-align: center;
+    font: normal normal medium 14px/19px Roboto;
+    letter-spacing: 1.25px;
+    color: #374761;
+    opacity: 1;
+}
+
+.radio-input {
+    margin: 0;
+    margin-right: 5px;
+    margin-left: 5px;
+    text-align: left;
+    font: normal normal normal 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: #858585;
+    opacity: 1;
 }
 
 .alert {

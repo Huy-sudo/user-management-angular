@@ -52,15 +52,15 @@
       <div style="display: flex; align-items: center;">
         <input class="date-input" type="date" id="dateOfBirth" formControlName="dateOfBirth"
           (change)="handleOnChange($event)" [max]="maxDate" [min]="minDate">
-        <input class="radio-input" type="radio" value="male" id="gender" formControlName="gender" required
+        <input class="radio-input" type="radio" value="male" id="gender" formControlName="gender"
           (change)="handleOnChange($event)" class="radio-input">
         Male
-        <input class="radio-input" type="radio" value="female" id="gender" formControlName="gender" required
+        <input class="radio-input" type="radio" value="female" id="gender" formControlName="gender"
           (change)="handleOnChange($event)" class="radio-input">
         Female
       </div>
       <div *ngIf="this.form.controls['dateOfBirth'].touched" class="alert">
-        <div *ngIf="dateValidator()">
+        <div *ngIf="this.form.controls['dateOfBirth'].touched && dateValidator()">
           Wrong date format
         </div>
       </div>
@@ -74,7 +74,8 @@
           required>
           <option value="" disabled selected>Title</option>
           <option value="Team lead">Team lead</option>
-          <option value="Web developer">Web developer</option>
+          <option value="Architecture">Architecture</option>
+          <option value="Web Developer">Web Developer</option>
           <option value="Tester">Tester</option>
           <option value="UI/UX">UI/UX</option>
           <option value="DBA">DBA</option>
@@ -108,8 +109,7 @@
     </div>
     <div mat-dialog-actions align="end">
       <button class="discard-button" type="button" mat-button (click)="onNoClick()">DISCARD</button>
-      <button class="submit-button" mat-button type="button" [disabled]="form.invalid" (click)="onSubmit()">CREATE
-        USER</button>
+      <button class="submit-button" mat-button type="button" [disabled]="form.invalid" (click)="onSubmit()">CREATE USER</button>
     </div>
   </form>
 </div>

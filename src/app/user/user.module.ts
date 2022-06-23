@@ -23,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatSortModule} from '@angular/material/sort'
 import {MatTableModule} from '@angular/material/table'
 import { SearchFilterPipe } from '../search-filter.pipe';
+import {LayoutModule} from '@angular/cdk/layout';
 @NgModule({
   declarations: [
     UsersListComponent,
@@ -49,6 +50,7 @@ import { SearchFilterPipe } from '../search-filter.pipe';
     MatNativeDateModule,
     MatSortModule,
     MatTableModule,
+    LayoutModule
   ],
   providers: [UserService],
   exports: [

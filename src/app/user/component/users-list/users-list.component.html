@@ -9,7 +9,7 @@
     <div class="header-body-container">
       <button mat-button class="create-user-button" (click)="openDialog()">
         <mat-icon aria-hidden="false" class="plusIcon">add</mat-icon>
-        CREATE USER
+        <span class="create-user">CREATE USER</span>
       </button>
       <span class="sort-text">Sort by</span>
       <mat-select class="select-box" (selectionChange)="filterData($event.value)" [(value)]="selected">
