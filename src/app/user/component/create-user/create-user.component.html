@@ -73,12 +73,12 @@
         id="title" (change)="handleOnChange($event)" formControlName="title"
           required>
           <option value="" disabled selected>Title</option>
-          <option value="Team lead">Team lead</option>
-          <option value="Architecture">Architecture</option>
-          <option value="Web Developer">Web Developer</option>
-          <option value="Tester">Tester</option>
-          <option value="UI/UX">UI/UX</option>
-          <option value="DBA">DBA</option>
+          <option value="1">Team lead</option>
+          <option value="2">Architecture</option>
+          <option value="3">Web Developer</option>
+          <option value="4">Tester</option>
+          <option value="5">UI/UX</option>
+          <option value="6">DBA</option>
         </select>
         <div *ngIf="this.form.controls['title'].touched && this.form.controls['title'].invalid"
           class="alert">

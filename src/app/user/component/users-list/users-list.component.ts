@@ -9,6 +9,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 
 import { User } from "../../user.model";
 import { CreateUserComponent } from "../create-user/create-user.component";
+import { Title } from "../../title.model";
 
 
 @Component({
@@ -18,15 +19,17 @@ import { CreateUserComponent } from "../create-user/create-user.component";
     "../../../../../node_modules/@material/layout-grid/mdc-layout-grid.scss"]
 })
 
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnChanges {
   users$!: Observable<User[]>;
   error$!: Observable<String>;
+  // titles$!: Observable<Title[]>;
+  // isLoading!: Boolean;
   users: User[] = []
+  // titles: Title[] = []
   sortType: string = "Created date";
   items = ['Created date', 'Last name', 'First name', 'Email'];
   expandedIndex = 0;
   searchText: string = "";
-
   titles: string[] = ['Team lead', 'Architecture', 'Web Developer', 'Tester', 'UI/UX', 'DBA'];
 
   isASC: boolean = true;
@@ -116,9 +119,16 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new userActions.LoadUsers());
+    // this.store.dispatch(new userActions.LoadTitles());
     this.users$ = this.store.pipe(select(fromUser.getUsers));
+    // this.titles$ = this.store.pipe(select(fromUser.getTitles))
     this.error$ = this.store.pipe(select(fromUser.getError));
-    this.users$.subscribe(user => this.users = user);
+    this.users$.subscribe(user => this.users = user);   
+    // this.titles$.subscribe(title => this.titles = title); 
+  }
+
+  ngOnChanges() {
+
   }
 
   selected = 'Created date'
@@ -163,12 +173,14 @@ export class UsersListComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateUserComponent, {
       width: '500px',
-      data: this.users
+      data: this.users$
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.user = result;
+      // this.store.dispatch(new userActions.LoadUsers());
+      console.log(this.users$);
+      
     });
   }
 

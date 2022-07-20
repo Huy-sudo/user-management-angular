@@ -34,7 +34,8 @@ export class GroupUserModule implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.user = result;
+      this.store.dispatch(new userActions.LoadUsers());
+      
     });
   }
 }

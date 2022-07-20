@@ -4,7 +4,7 @@
       <button mat-button class="delete" style="color:red" (click)="openDialog()">DELETE</button>
       USER INFORMATION
       <button mat-button (click)="changeEdit()">
-        <mat-icon aria-hidden="false">edit</mat-icon>
+        <mat-icon aria-hidden="false" class="edit">edit</mat-icon>
       </button>
     </div>
     <div mat-dialog-content>
@@ -66,12 +66,13 @@
       <div>
         <select name="title"
           [ngClass]="{'has-error': this.form.controls['title'].touched && this.form.controls['title'].hasError('required'), 'select': 1}"
-          id="title" (change)="handleOnChange($event)" formControlName="title">
-          <option value="Team lead">Team lead</option>
-          <option value="Web developer">Web developer</option>
-          <option value="Tester">Tester</option>
-          <option value="UI/UX">UI/UX</option>
-          <option value="DBA">DBA</option>
+          id="title" (change)="handleOnChange($event)" formControlName="title" >
+          <option value="1">Team lead</option>
+          <option value="2">Architecture</option>
+          <option value="3">Web developer</option>
+          <option value="4">Tester</option>
+          <option value="5">UI/UX</option>
+          <option value="6">DBA</option>
         </select>
         <div *ngIf="this.form.controls['title'].touched && this.form.controls['title'].invalid" class="alert">
           <div *ngIf="this.form.controls['title'].errors && this.form.controls['title'].errors['required']">
@@ -81,9 +82,9 @@
       <div>
         <input class="input-text" type="text" id="email" formControlName="email" (change)="handleOnChange($event)">
       </div>
-      <div mat-dialog-actions align="end">
+      <div mat-dialog-actions>
         <button class="discard-button" mat-button type="button" (click)="onNoClick()">DISCARD</button>
-        <button class="submit-button" mat-button type="button" [disabled]="form.invalid && disable" (click)="onSubmit()" [mat-dialog-close]="data.firstName"
+        <button class="submit-button" mat-button type="button" [disabled]="form.invalid || disable" (click)="onSubmit()" [mat-dialog-close]="data.firstName"
           cdkFocusInitial>SAVE</button>
       </div>
     </div>

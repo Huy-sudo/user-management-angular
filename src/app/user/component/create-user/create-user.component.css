@@ -150,3 +150,13 @@
     border-radius: 6px;
     opacity: 1;
 }
+
+@media only screen and (min-width: 300px) {
+    .input-text {
+        width: 90%
+    }
+
+    .select {
+        width: 95%
+    }
+}

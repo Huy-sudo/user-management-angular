@@ -1,48 +1,53 @@
 <div class="container">
-  <div class="header-container">
-    <img class="header-logo" src="../../../../assets/logo-header.svg" />
-    <mat-icon aria-hidden="false" class="listIcon">reorder</mat-icon>
-    <mat-icon aria-hidden="false" class="bellIcon">notifications</mat-icon>
-    <mat-icon aria-hidden="false" class="userIcon">account_circle</mat-icon>
-  </div>
-  <div class="body-container">
-    <div class="header-body-container">
-      <button mat-button class="create-user-button" (click)="openDialog()">
-        <mat-icon aria-hidden="false" class="plusIcon">add</mat-icon>
-        <span class="create-user">CREATE USER</span>
-      </button>
-      <span class="sort-text">Sort by</span>
-      <mat-select class="select-box" (selectionChange)="filterData($event.value)" [(value)]="selected">
-        <mat-option *ngFor="let item of items" style="color: white" class="not-empty-select" [value]="item">
-          {{item}}
-        </mat-option>
-      </mat-select>
-      <mat-icon (click)="onClickASC()" aria-hidden="false" class="arrowIcon">{{isASCName()}}</mat-icon>
-      <div class="line"></div>
-      <input name="searchText" class="search-box" type="text" [(ngModel)]="searchText" placeholder="Search">
-    </div>
-    <div class="mdc-layout-grid">
-      <cdk-accordion class="accordion">
-        <cdk-accordion-item *ngFor="let item of titles; let index = index;" #accordionItem="cdkAccordionItem"
-          class="accordion-item" [ngClass]="{'mdc-layout-grid__inner': accordionItem.expanded}" role="button"
-          tabindex="0" [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
-          [attr.aria-controls]="'accordion-body-' + index" style="margin-left: 1%; margin-right: 1%">
-          <div class="mdc-layout-grid__cell--span-12 accordion-item-header" style="justify-content: normal;"
-            (click)="accordionItem.toggle()">
-            <i *ngIf="accordionItem.expanded" class="material-icons">keyboard_arrow_down</i>
-            <i *ngIf="!accordionItem.expanded" class="material-icons">keyboard_arrow_up</i>
-            {{ item }}
-            <hr>
-          </div>
-          <ng-container *ngFor="let user of users | searchFilter: searchText; index as i">
-          <div class="mdc-layout-grid__cell--span-3" *ngIf="user.title == item" >
-            <app-group-user [user]="user" class="group-user" 
-              [style.display]="accordionItem.expanded ? '' : 'none'">
-            </app-group-user>
-          </div>
-        </ng-container>
-        </cdk-accordion-item>
-      </cdk-accordion>
-    </div>
-  </div>
+  <!-- <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only" id="loading"></span> -->
+      <div class="header-container">
+        <img class="header-logo" src="../../../../assets/logo-header.svg" />
+        <mat-icon aria-hidden="false" class="listIcon">reorder</mat-icon>
+        <mat-icon aria-hidden="false" class="bellIcon">notifications</mat-icon>
+        <mat-icon aria-hidden="false" class="userIcon">account_circle</mat-icon>
+      </div>
+      <div class="body-container">
+        <div class="header-body-container">
+          <button mat-button class="create-user-button" (click)="openDialog()">
+            <mat-icon aria-hidden="false" class="plusIcon">add</mat-icon>
+            <span class="create-user">CREATE USER</span>
+          </button>
+          <span class="sort-text">Sort by</span>
+          <mat-select class="select-box" (selectionChange)="filterData($event.value)" [(value)]="selected">
+            <mat-option *ngFor="let item of items" style="color: white" class="not-empty-select" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+          <mat-icon (click)="onClickASC()" aria-hidden="false" class="arrowIcon">{{isASCName()}}</mat-icon>
+          <div class="line"></div>
+          <input name="searchText" class="search-box" type="text" [(ngModel)]="searchText" placeholder="Search">
+        </div>
+        <div class="mdc-layout-grid">
+          <cdk-accordion class="accordion">
+            <cdk-accordion-item *ngFor="let item of titles; let index = index;" #accordionItem="cdkAccordionItem"
+              class="accordion-item" [ngClass]="{'mdc-layout-grid__inner': accordionItem.expanded}" role="button"
+              tabindex="0" [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+              [attr.aria-controls]="'accordion-body-' + index" style="margin-left: 1%; margin-right: 1%">
+              <div class="mdc-layout-grid__cell--span-12 accordion-item-header" style="justify-content: normal;"
+                (click)="accordionItem.toggle()">
+                <i *ngIf="accordionItem.expanded" class="material-icons">keyboard_arrow_down</i>
+                <i *ngIf="!accordionItem.expanded" class="material-icons">keyboard_arrow_up</i>
+                {{ item }}
+                <hr>
+              </div>
+              <ng-container *ngFor="let user of users | searchFilter: searchText; index as i">
+                <div class="mdc-layout-grid__cell--span-3" *ngIf="user.title == item">
+                  <app-group-user [user]="user" class="group-user"
+                    [style.display]="accordionItem.expanded ? '' : 'none'">
+                  </app-group-user>
+                </div>
+              </ng-container>
+            </cdk-accordion-item>
+          </cdk-accordion>
+        </div>
+      </div>
+    <!-- </div>
+  </div> -->
 </div>

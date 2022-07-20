@@ -9,6 +9,7 @@ import { map, mergeMap, catchError } from "rxjs/operators";
 import { UserService } from "../services/user.service";
 import * as userActions from "./user.actions";
 import { User } from "../user.model";
+import { Title } from "../title.model";
 
 @Injectable()
 export class UserEffects {
@@ -16,6 +17,21 @@ export class UserEffects {
     private actions$: Actions,
     private userService: UserService
   ) {}
+
+  @Effect()
+  loadTitles$: Observable<Action> = this.actions$.pipe(
+    ofType<userActions.LoadTitles>(
+      userActions.userActionTypes.LOAD_TITLES
+    ),
+    mergeMap((action: userActions.LoadTitles) =>
+      this.userService.getTitles().pipe(
+          map(
+            (titles: Title[]) =>
+              new userActions.LoadTitlesSuccess(titles)
+          ),
+          catchError(err => of(new userActions.LoadTitlesFail(err)))
+      ))
+  );
 
   @Effect()
   loadUsers$: Observable<Action> = this.actions$.pipe(
