@@ -1,15 +1,15 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from "@angular/core";
+import { Component, ViewChild, OnInit, OnChanges, SimpleChanges } from "@angular/core";
+import { CdkAccordion } from '@angular/cdk/accordion';
 
 import { Store, select } from "@ngrx/store";
-import { Observable, map, exhaustMap, elementAt } from "rxjs";
+import { Observable, map, exhaustMap, elementAt, timeout } from "rxjs";
 
 import * as userActions from "../../store/user.actions";
 import * as fromUser from "../../store/user.reducers";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { User } from "../../user.model";
 import { CreateUserComponent } from "../create-user/create-user.component";
-import { Title } from "../../title.model";
 
 
 @Component({
@@ -20,6 +20,8 @@ import { Title } from "../../title.model";
 })
 
 export class UsersListComponent implements OnInit, OnChanges {
+  @ViewChild(CdkAccordion) accordion!: CdkAccordion;
+  multi = true;
   users$!: Observable<User[]>;
   error$!: Observable<String>;
   // titles$!: Observable<Title[]>;
@@ -31,7 +33,6 @@ export class UsersListComponent implements OnInit, OnChanges {
   expandedIndex = 0;
   searchText: string = "";
   titles: string[] = ['Team lead', 'Architecture', 'Web Developer', 'Tester', 'UI/UX', 'DBA'];
-
   isASC: boolean = true;
 
   isASCName() {
@@ -114,17 +115,16 @@ export class UsersListComponent implements OnInit, OnChanges {
     }
   }
 
-  constructor(private store: Store<fromUser.AppState>, 
+  constructor(private store: Store<fromUser.AppState>,
     public dialog: MatDialog) { }
 
   ngOnInit() {
     this.store.dispatch(new userActions.LoadUsers());
-    // this.store.dispatch(new userActions.LoadTitles());
     this.users$ = this.store.pipe(select(fromUser.getUsers));
-    // this.titles$ = this.store.pipe(select(fromUser.getTitles))
     this.error$ = this.store.pipe(select(fromUser.getError));
-    this.users$.subscribe(user => this.users = user);   
-    // this.titles$.subscribe(title => this.titles = title); 
+    this.users$.subscribe(user => {
+      this.users = user;
+    });
   }
 
   ngOnChanges() {
@@ -173,14 +173,17 @@ export class UsersListComponent implements OnInit, OnChanges {
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateUserComponent, {
       width: '500px',
-      data: this.users$
+      data: this.users
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.store.dispatch(new userActions.LoadUsers());
-      console.log(this.users$);
-      
+      if (result)
+      {
+        setTimeout(() => this.store.dispatch(new userActions.LoadUsers()), 1000);
+      }
+        else
+        console.log('abc');
     });
   }
 

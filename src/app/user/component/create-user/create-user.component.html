@@ -52,10 +52,10 @@
       <div style="display: flex; align-items: center;">
         <input class="date-input" type="date" id="dateOfBirth" formControlName="dateOfBirth"
           (change)="handleOnChange($event)" [max]="maxDate" [min]="minDate">
-        <input class="radio-input" type="radio" value="male" id="gender" formControlName="gender"
+        <input class="radio-input" type="radio" value="male" id="gender-male" formControlName="gender"
           (change)="handleOnChange($event)" class="radio-input">
         Male
-        <input class="radio-input" type="radio" value="female" id="gender" formControlName="gender"
+        <input class="radio-input" type="radio" value="female" id="gender-female" formControlName="gender"
           (change)="handleOnChange($event)" class="radio-input">
         Female
       </div>

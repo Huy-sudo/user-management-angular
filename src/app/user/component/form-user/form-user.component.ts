@@ -44,22 +44,30 @@ export class FormUser implements OnChanges, OnInit {
     //   organization: new FormControl({ disabled: true, value: this.data.organization }),
     //   email: new FormControl({ disabled: this.disable, value: this.data.email }, [Validators.required, Validators.email, Validators.maxLength(160)]),
     // });
-  
+
     // this.form.controls['title'].setValue(this.data.title, {onlySelf: true});
-    
+
   }
 
   form: any = new FormGroup({
     firstName: new FormControl({ disabled: this.disable, value: this.data.firstName }, [Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
     lastName: new FormControl({ disabled: this.disable, value: this.data.lastName }, [Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
-    title: new FormControl({ disabled: this.disable, value: this.data.title}, [Validators.required]),
-    dateOfBirth: new FormControl({ disabled: this.disable, value: formatDate(this.data.dateOfBirth, 'mm/dd/yyyy', 'en') }),
+    title: new FormControl({ disabled: this.disable, value: this.data.title }, [Validators.required]),
+    dateOfBirth: new FormControl({ disabled: this.disable, value: new Date(new Date(this.data.dateOfBirth).getFullYear(), new Date(this.data.dateOfBirth).getMonth() + 1, new Date(this.data.dateOfBirth).getDay()) }),
     gender: new FormControl({ disabled: this.disable, value: this.data.gender }),
     organization: new FormControl({ disabled: true, value: this.data.organization }),
     email: new FormControl({ disabled: this.disable, value: this.data.email }, [Validators.required, Validators.email, Validators.maxLength(160)]),
   });
 
-
+  changeFormatDate(date: Date) {
+    const newDate = new Date(date)
+    const currentDayOfMonth = newDate.getDate();
+    const currentMonth = newDate.getMonth();
+    const currentYear = newDate.getFullYear();
+    console.log(currentDayOfMonth, currentMonth, currentYear);
+    
+    return currentDayOfMonth + "-" + (currentMonth + 1) + "-" + currentYear;
+  }
 
   updateUser: any = {
     id: this.data.id,
@@ -77,8 +85,7 @@ export class FormUser implements OnChanges, OnInit {
   }
 
   titleChange(titleName: string): any {
-    console.log(titleName);
-    
+
     switch (titleName) {
       case "Team lead":
         return 1;
@@ -149,11 +156,12 @@ export class FormUser implements OnChanges, OnInit {
     }
   }
 
-  onSubmit() {    
-    if (typeof(this.updateUser.title) !== typeof(5))
+  onSubmit() {
+    if (typeof (this.updateUser.title) !== typeof (5))
       this.updateUser.title = this.titleChange(this.updateUser.title);
     this.updateUser.userId = this.updateUser.id;
     this.store.dispatch(new userActions.UpdateUser(this.updateUser));
+    this.dialogRef.close(this.updateUser);
   }
 
 }

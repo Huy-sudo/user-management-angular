@@ -3,7 +3,7 @@
     <div mat-dialog-title class="title">
       <button mat-button class="delete" style="color:red" (click)="openDialog()">DELETE</button>
       USER INFORMATION
-      <button mat-button (click)="changeEdit()">
+      <button mat-button (click)="changeEdit()" id="edit-button">
         <mat-icon aria-hidden="false" class="edit">edit</mat-icon>
       </button>
     </div>
@@ -48,10 +48,10 @@
       <div style="display: flex; align-items: center;">
         <input class="date-input" type="date" id="dateOfBirth" formControlName="dateOfBirth"
           (change)="handleOnChange($event)">
-        <input class="radio-input" type="radio" value="male" id="gender" formControlName="gender"
+        <input class="radio-input" type="radio" value="male" id="gender-male" formControlName="gender"
           (change)="handleOnChange($event)" class="radio-input">
         Male
-        <input class="radio-input" type="radio" value="female" id="gender" formControlName="gender"
+        <input class="radio-input" type="radio" value="female" id="gender-female" formControlName="gender"
           (change)="handleOnChange($event)" class="radio-input">
         Female
       </div>
@@ -66,7 +66,7 @@
       <div>
         <select name="title"
           [ngClass]="{'has-error': this.form.controls['title'].touched && this.form.controls['title'].hasError('required'), 'select': 1}"
-          id="title" (change)="handleOnChange($event)" formControlName="title" >
+          id="title" (change)="handleOnChange($event)" formControlName="title">
           <option value="1">Team lead</option>
           <option value="2">Architecture</option>
           <option value="3">Web developer</option>

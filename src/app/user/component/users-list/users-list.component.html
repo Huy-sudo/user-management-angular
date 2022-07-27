@@ -10,7 +10,7 @@
       </div>
       <div class="body-container">
         <div class="header-body-container">
-          <button mat-button class="create-user-button" (click)="openDialog()">
+          <button id="create-button" mat-button class="create-user-button" (click)="openDialog()">
             <mat-icon aria-hidden="false" class="plusIcon">add</mat-icon>
             <span class="create-user">CREATE USER</span>
           </button>
@@ -25,7 +25,7 @@
           <input name="searchText" class="search-box" type="text" [(ngModel)]="searchText" placeholder="Search">
         </div>
         <div class="mdc-layout-grid">
-          <cdk-accordion class="accordion">
+          <cdk-accordion class="accordion" [multi]="multi">
             <cdk-accordion-item *ngFor="let item of titles; let index = index;" #accordionItem="cdkAccordionItem"
               class="accordion-item" [ngClass]="{'mdc-layout-grid__inner': accordionItem.expanded}" role="button"
               tabindex="0" [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"

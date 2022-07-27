@@ -3,7 +3,6 @@ import { User } from '../user.model';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Title } from '../title.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,15 +23,6 @@ export class UserService {
     return (error: any): Observable<T> => {
       return of(result as T);
     };
-  }
-
-  // GET titles
-  getTitles(): Observable<Title[]> {
-    return this.http.get<Title[]>(`${this.titlesUrl}`)
-      .pipe(
-        tap(_ => console.log('fetched titles')),
-        catchError(this.handleError<Title[]>('getTitles', []))
-      );
   }
 
   /** GET users */

@@ -1,14 +1,14 @@
 <mat-card class="user-card">
     <mat-card-content class="content-card">
         <img class="avatar"
-            src={{user?.img}} />
+            src={{user.img}} />
         <div class="user-detail">
-            <p><b>First name:</b> {{user?.firstName}}</p>
-            <p><b>Last name:</b> {{user?.lastName}}</p>
-            <p><b>Company:</b> ROSEN</p>
-            <p><b>Email Address:</b> {{user?.email}}</p>
+            <p><b>First name: </b> <span id="firstName">{{user.firstName}}</span></p>
+            <p><b>Last name: </b> <span id="lastName">{{user.lastName}}</span></p>
+            <p><b>Company: </b> <span id="company">{{user.organization}}</span></p>
+            <p><b>Email Address: </b> <span id="email">{{user.email}}</span></p>
         </div>
-        <button mat-icon-button class="infoIcon" (click)="openDialog()">
+        <button id="user-info" mat-icon-button class="infoIcon" (click)="openDialog()">
             <mat-icon >info</mat-icon>
         </button>
     </mat-card-content>

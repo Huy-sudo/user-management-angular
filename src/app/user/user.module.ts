@@ -37,7 +37,6 @@ import {LayoutModule} from '@angular/cdk/layout';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forFeature("Users", fromUser.UserReducer),
-    StoreModule.forFeature("Titles", fromUser.TitleReducer),
     EffectsModule.forFeature([UserEffects]),
     MatSelectModule,
     MatCardModule,

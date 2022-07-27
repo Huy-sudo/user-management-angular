@@ -4,7 +4,6 @@ import { Update } from "@ngrx/entity";
 
 import { User } from "../user.model";
 
-import { Title } from "../title.model";
 
 export enum userActionTypes {
   LOAD_TITLES = "[Title] Load Titles",
@@ -25,22 +24,6 @@ export enum userActionTypes {
   DELETE_USER = "[User] Delete User",
   DELETE_USER_SUCCESS = "[User] Delete User Success",
   DELETE_USER_FAIL = "[User] Delete User Fail"
-}
-export class LoadTitles implements Action {
-  readonly type = userActionTypes.LOAD_TITLES;
-  
-}
-
-export class LoadTitlesSuccess implements Action {
-  readonly type = userActionTypes.LOAD_TITLES_SUCCESS;
-
-  constructor(public payload: Title[]) {}
-}
-
-export class LoadTitlesFail implements Action {
-  readonly type = userActionTypes.LOAD_TITLES_FAIL;
-
-  constructor(public payload: string) {}
 }
 export class LoadUsers implements Action {
   readonly type = userActionTypes.LOAD_USERS;
@@ -132,9 +115,6 @@ export class DeleteUserFail implements Action {
 }
 
 export type Actions =
-  | LoadTitles
-  | LoadTitlesSuccess
-  | LoadTitlesFail
   | LoadUsers
   | LoadUsersSuccess
   | LoadUsersFail
